@@ -1,8 +1,9 @@
 :root {
-  --primary: #ebc908;
-  --primary-text: #1a1a1a;
-  --secondary: #ff1dec;
+  /*linear-gradient(250deg, rgb(5, 25, 90) 33.3%, rgb(4, 15, 49))*/
+  --primary: rgb(5, 25, 90);
+  --primary-text: #ffffff;
+  --secondary: #04bbfb;
   --secondary-text: #ffffff;
-  --accent: #505050;
+  --accent: rgb(4, 15, 49);
   --accent-text: #ffffff;
 }

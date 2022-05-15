@@ -76,7 +76,7 @@ export const StyledLogo = styled.img`
 
 export const StyledImg = styled.img`
   box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
+  border: 4px groove var(--secondary);
   background-color: var(--accent);
   border-radius: 100%;
   width: 200px;
@@ -99,6 +99,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
+  const [isTheyConnected, setIsTheyConnected] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
@@ -209,14 +210,14 @@ function App() {
           </s.Container>
           <s.SpacerLarge />
           <s.Container
-            flex={2}
+            flex={1}
             jc={"center"}
             ai={"center"}
             style={{
               backgroundColor: "var(--accent)",
-              padding: 24,
-              borderRadius: 24,
-              border: "4px dashed var(--secondary)",
+              padding: 21,
+              borderRadius: 21,
+              border: "4px solid var(--secondary)",
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
@@ -228,7 +229,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.totalSupply} / {CONFIG.MAX_SUPPLY}
+              {blockchain.account ? data.totalSupply.toString().concat(" / ").concat(CONFIG.MAX_SUPPLY) :"" }
             </s.TextTitle>
             <s.TextDescription
               style={{
@@ -379,28 +380,31 @@ function App() {
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerMedium />
-        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
-          </s.TextDescription>
-          <s.SpacerSmall />
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
-          </s.TextDescription>
+        <s.Container jc={"center"} ai={"center"} style={{ width: "70%", display: "inline-block", textAlign:"center" }}>
+            <a href={"https://twitter.com/sokuswap"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"SokuSwap Twitter"}
+              src={"/config/images/Twitter social icons - circle - blue.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://discord.gg/6tnB3S2t4C"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"SokuSwap Discord"}
+              src={"/config/images/Discord-Logo-Color.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://t.me/SokuSwap"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"SokuSwap Telegram"}
+              src={"/config/images/Telegram-Logo.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://testnets.opensea.io/collection/nft-thingy"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Soku Samurai Collection"}
+              src={"/config/images/Opensea-Logomark-Blue.png"}
+              height={"50px"}
+            /></a>
         </s.Container>
       </s.Container>
     </s.Screen>
